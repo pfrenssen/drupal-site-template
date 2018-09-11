@@ -16,7 +16,8 @@ mysql:
 
 env:
   - TEST=GrumPHP
-  - TEST=PHPUnit
+  # Todo: support PHPUnit testing.
+  # - TEST=PHPUnit
   - TEST=Behat
 
 matrix:
