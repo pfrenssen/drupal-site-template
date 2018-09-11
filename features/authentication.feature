@@ -7,7 +7,8 @@ Feature: User authentication
     Given I am not logged in
     When I visit "user"
     Then I should see the text "Log in"
-    And I should see the text "Create new account"
+    # Creating new accounts is disabled.
+    And I should not see the text "Create new account"
     And I should see the text "Reset your password"
     And I should see the text "Username"
     And I should see the text "Password"
@@ -23,7 +24,6 @@ Feature: User authentication
       | path          |
       | user/login    |
       | user/password |
-      | user/register |
 
   Scenario Outline: Anonymous user cannot access restricted pages
     Given I am not logged in
@@ -39,9 +39,10 @@ Feature: User authentication
       | admin/people     |
       | admin/structure  |
       # To do: the 'node/' path should be disabled on most Drupal sites.
-      # | node            |
+      # | node             |
       | node/add         |
       | user/1           |
+      | user/register    |
 
   @api
   Scenario Outline: Authenticated user can access pages they are authorized to
