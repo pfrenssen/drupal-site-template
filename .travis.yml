@@ -59,4 +59,7 @@ install:
   - until curl -s localhost:8888; do true; done > /dev/null
   - cd $TRAVIS_BUILD_DIR
 
+  # Debugging.
+  - cat behat.yml
+
 script: ./scripts/travis-ci/run-test.sh ${TEST}
