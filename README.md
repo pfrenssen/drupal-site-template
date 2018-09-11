@@ -2,7 +2,7 @@
 
 This is based on [drupal-composer/drupal-project](https://github.com/drupal-composer/drupal-project).
 
-[![Build Status](https://drone.fpfis.eu/api/badges/openeuropa/drupal-site-template/status.svg?branch=master)](https://drone.fpfis.eu/openeuropa/drupal-site-template)
+[![Build Status](https://travis-ci.org/pfrenssen/drupal-site-template.svg?branch=master)](https://travis-ci.org/pfrenssen/drupal-site-template.svg?branch=master)
 
 This project template provides a starter kit for creating a website using
 Drupal 8.
