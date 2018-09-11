@@ -77,11 +77,18 @@ class SetupWizard {
       file_put_contents($filename, $file);
     }
 
-    // Update the configuration file.
-    $file = file_get_contents('runner.yml.dist');
-    $file = preg_replace('/My Drupal project/', trim($project_name), $file);
-    $file = preg_replace('/drupal_project/', $machine_name, $file);
-    file_put_contents('runner.yml.dist', $file);
+    // Update the configuration files.
+    $configuration_files = [
+      '.travis.yml',
+      'runner.yml.dist',
+      'scripts/travis-ci/runner.yml',
+    ];
+    foreach ($configuration_files as $configuration_file) {
+      $file = file_get_contents($configuration_file);
+      $file = preg_replace('/My Drupal project/', trim($project_name), $file);
+      $file = preg_replace('/drupal_project/', $machine_name, $file);
+      file_put_contents($configuration_file, $file);
+    }
 
     // Remove the configuration related to the setup wizard.
     unset($config['scripts']['cleanup']);
