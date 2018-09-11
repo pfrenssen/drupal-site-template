@@ -5,11 +5,11 @@ parameters:
     - vendor/
     - web/
   tasks.phpcs.triggered_by:
-    - php
-    - module
     - inc
-    - theme
     - install
+    - module
+    - php
+    - theme
 
   extra_tasks:
     phpparser:

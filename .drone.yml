@@ -1,12 +1,12 @@
 workspace:
   base: /test
-  path: openeuropa-site
+  path: drupal-project
 
 services:
   web:
     image: fpfis/httpd-php-dev:7.1
     environment:
-      - DOCUMENT_ROOT=/test/openeuropa-site
+      - DOCUMENT_ROOT=/test/drupal-project
   mysql:
     image: percona/percona-server:5.6
     environment:

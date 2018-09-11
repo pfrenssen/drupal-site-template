@@ -4,12 +4,12 @@ drupal:
   database:
     host: "mysql"
     port: "3306"
-    name: "openeuropa_site"
+    name: "drupal_project"
     user: "root"
     password: ""
   site:
-    profile: "oe_profile"
-    name: "My OpenEuropa site"
+    profile: "umami"
+    name: "My Drupal project"
   pre_install:
     - { task: "chmod", permissions: 0775, file: "${drupal.root}/sites/default" }
     - { task: "touch", file: "${drupal.root}/sites/default/settings.php" }

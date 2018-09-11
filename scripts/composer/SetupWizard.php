@@ -37,8 +37,8 @@ class SetupWizard {
     $config = $composer_json->read();
 
     // Ask for the project name, and suggest the various machine names.
-    $project_name = $event->getIO()->ask('<info>What is the (human readable) project name?</info> [<comment>My Europa Site</comment>]? ', 'My Europa Site');
-    $organization_name = $event->getIO()->ask('<info>What is the (human readable) name of the organization?</info> [<comment>OpenEuropa</comment>]? ', 'OpenEuropa');
+    $project_name = $event->getIO()->ask('<info>What is the (human readable) project name?</info> [<comment>My Drupal project</comment>]? ', 'My Drupal project');
+    $organization_name = $event->getIO()->ask('<info>What is the (human readable) name of the organization?</info> [<comment>DrupalProject</comment>]? ', 'DrupalProject');
 
     $sanitized_project_name = strtolower(preg_replace('/[^a-zA-Z ]/', '', trim($project_name)));
     $sanitized_organization_name = preg_replace('/[^a-zA-Z ]/', '', trim($organization_name));
@@ -50,7 +50,7 @@ class SetupWizard {
     $package_name = preg_replace('/\s+/', '-', strtolower($sanitized_organization_name)) . '/' . preg_replace('/\s+/', '-', $sanitized_project_name);
     $package_name = $event->getIO()->ask('<info>What is the package name?</info> [<comment>' . $package_name . '</comment>]? ', $package_name);
 
-    $description = 'A website built on the OpenEuropa platform.';
+    $description = 'A website built with Drupal 8.';
     $description = $event->getIO()->ask('<info>Provide a description</info> [<comment>' . $description . '</comment>]? ', $description);
 
     // Define the namespace for the project.
@@ -73,14 +73,14 @@ class SetupWizard {
     $filenames[] = 'behat.yml.dist';
     foreach ($filenames as $filename) {
       $file = file_get_contents($filename);
-      $file = preg_replace('/' . preg_quote('OpenEuropa\my_site\\', '/') . '/', $namespace, $file);
+      $file = preg_replace('/' . preg_quote('DrupalProject\my_site\\', '/') . '/', $namespace, $file);
       file_put_contents($filename, $file);
     }
 
     // Update the configuration file.
     $file = file_get_contents('runner.yml.dist');
-    $file = preg_replace('/My OpenEuropa site/', trim($project_name), $file);
-    $file = preg_replace('/openeuropa_site/', $machine_name, $file);
+    $file = preg_replace('/My Drupal project/', trim($project_name), $file);
+    $file = preg_replace('/drupal_project/', $machine_name, $file);
     file_put_contents('runner.yml.dist', $file);
 
     // Remove the configuration related to the setup wizard.

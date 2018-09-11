@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace OpenEuropa\my_site\Context;
+namespace DrupalProject\my_site\Context;
 
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 
