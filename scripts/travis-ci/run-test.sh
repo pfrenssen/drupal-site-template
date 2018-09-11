@@ -3,7 +3,7 @@
 case "$1" in
     GrumPHP)
         cd $TRAVIS_BUILD_DIR
-        ./vendor/bin/phpcs
+        ./vendor/bin/grumphp run
         exit $?
         ;;
     PHPUnit)
