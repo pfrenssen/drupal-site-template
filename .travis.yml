@@ -10,7 +10,7 @@ services:
   - docker
 
 mysql:
-  database: myproject
+  database: drupal_project
   username: root
   encoding: utf8
 
@@ -35,24 +35,21 @@ before_install:
   # or not on PHP 7.
   - phpenv config-rm xdebug.ini || true
 
+  # Configure the task runner for Travis CI.
+  - cp scripts/travis-ci/runner.yml .
+
   # Update composer.
   - composer --verbose self-update
 
   # Create database.
-  - mysql -e 'create database myproject'
+  - mysql -e 'create database drupal_project'
 
 install:
   # Install Composer dependencies.
   - composer --verbose install
 
-  # Define build properties for the local test environment.
-  - echo -e "drupal.base_url = http://localhost:8888\n" > build.properties.local
-
-  # Build the project.
-  - ./vendor/bin/phing build-dev
-
   # Install Drupal. This is not needed when doing a coding standards check.
-  - test ${TEST} == "GrumPHP" || ./vendor/bin/phing install-dev
+  - test ${TEST} == "GrumPHP" || ./vendor/bin/run drupal:site-install
 
   # Start a web server on port 8888 in the background.
   - cd $TRAVIS_BUILD_DIR/web
